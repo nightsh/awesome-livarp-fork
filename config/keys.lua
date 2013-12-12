@@ -94,10 +94,10 @@ awful.key( k_mc	, "w", function () awful.util.spawn(home .. "/.bin/random_wall.s
 -----------------------------------------------------------------------------------------
 
 -- moc control --------------------------------------------------------------------------
-awful.key({ "Control", }, "Right", function () moc_control("next") end),
-awful.key({ "Control", }, "Left",  function () moc_control("previous") end),
-awful.key({ "Control", }, "Up",    function () moc_control("stop") end),
-awful.key({ "Control", }, "Down",  function () moc_control("play_pause") end),
+--awful.key({ "Control", }, "Right", function () moc_control("next") end),
+--awful.key({ "Control", }, "Left",  function () moc_control("previous") end),
+--awful.key({ "Control", }, "Up",    function () moc_control("stop") end),
+--awful.key({ "Control", }, "Down",  function () moc_control("play_pause") end),
 -----------------------------------------------------------------------------------------
 
 -- Volume keys -------------------------------------------------------------------------------------

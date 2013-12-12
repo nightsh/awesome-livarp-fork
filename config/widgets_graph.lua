@@ -336,7 +336,7 @@ vicious.register(batwidget, vicious.widgets.bat,
 			if show_icons then
 				if beautiful.widget_cpu then
 					baticon:set_image(beautiful.widget_bat)
-					return "<span color=\""..beautiful.fg_normal.."\" size=\"small\">".. args[2] .. "%</span>"
+					return "<span color=\""..beautiful.fg_normal.."\" size=\"small\">".. args[2] .. "% " .. args[1] .. "</span>"
 				else
 					baticon:set_image(default_bat_img)
 					return "<span color=\""..beautiful.fg_normal.."\" size=\"small\">".. args[2] .. "%</span>"
@@ -409,35 +409,35 @@ end
 
 --{{{ MPD control widget
 if mpd_enable then
-require("awesompd/awesompd")
+local awesompd = require("awesompd/awesompd")
   musicwidget = awesompd:create() -- Create awesompd widget
-  musicwidget.font = monofont -- Set widget font 
+  musicwidget.font = "Liberation Mono" -- Set widget font 
   musicwidget.scrolling = true -- If true, the text in the widget will be scrolled
-  musicwidget.output_size = 30 -- Set the size of widget in symbols
-  musicwidget.update_interval = 10 -- Set the update interval in seconds
+  musicwidget.output_size = 70 -- Set the size of widget in symbols
+  musicwidget.update_interval = 3 -- Set the update interval in seconds
   -- Set the folder where icons are located (change username to your login name)
-  musicwidget.path_to_icons = os.getenv("HOME") .."/.config/awesome/awesompd/icons" 
+  musicwidget.path_to_icons = "~/.config/awesome/awesompd/icons" 
   -- Set the default music format for Jamendo streams. You can change
   -- this option on the fly in awesompd itself.
   -- possible formats: awesompd.FORMAT_MP3, awesompd.FORMAT_OGG
   musicwidget.jamendo_format = awesompd.FORMAT_MP3
   -- If true, song notifications for Jamendo tracks and local tracks will also contain
   -- album cover image.
-  musicwidget.show_album_cover = true
+  musicwidget.show_album_cover = false
   -- Specify how big in pixels should an album cover be. Maximum value
   -- is 100.
   musicwidget.album_cover_size = 50
   -- This option is necessary if you want the album covers to be shown
   -- for your local tracks.
-  musicwidget.mpd_config = os.getenv("HOME").."/.mpdconf"
+  musicwidget.mpd_config = "~/.mpdconf"
   -- Specify the browser you use so awesompd can open links from
   -- Jamendo in it.
-  musicwidget.browser = "firefox"
+  musicwidget.browser = "iceweasel"
   -- Specify decorators on the left and the right side of the
   -- widget. Or just leave empty strings if you decorate the widget
   -- from outside.
-  musicwidget.ldecorator = " "
-  musicwidget.rdecorator = " "
+  musicwidget.ldecorator = "« "
+  musicwidget.rdecorator = " »"
   -- Set all the servers to work with (here can be any servers you use)
   musicwidget.servers = {
      { server = "localhost",
@@ -445,13 +445,13 @@ require("awesompd/awesompd")
   -- Set the buttons of the widget
   musicwidget:register_buttons({ { "", awesompd.MOUSE_LEFT, musicwidget:command_toggle() },
       			         { "Control", awesompd.MOUSE_SCROLL_UP, musicwidget:command_prev_track() },
-						 { "Control", awesompd.MOUSE_SCROLL_DOWN, musicwidget:command_next_track() },
-						 { "", awesompd.MOUSE_SCROLL_UP, musicwidget:command_volume_up() },
-						 { "", awesompd.MOUSE_SCROLL_DOWN, musicwidget:command_volume_down() },
-						 { "", awesompd.MOUSE_RIGHT, musicwidget:command_show_menu() },
-                         { "", "XF86AudioLowerVolume", musicwidget:command_volume_down() },
-                         { "", "XF86AudioRaiseVolume", musicwidget:command_volume_up() },
-                         { modkey, "Pause", musicwidget:command_playpause() } })
+ 			         { "Control", awesompd.MOUSE_SCROLL_DOWN, musicwidget:command_next_track() },
+ 			         { "", awesompd.MOUSE_SCROLL_UP, musicwidget:command_volume_up() },
+ 			         { "", awesompd.MOUSE_SCROLL_DOWN, musicwidget:command_volume_down() },
+ 			         { "", awesompd.MOUSE_RIGHT, musicwidget:command_show_menu() },
+                                 { "", "XF86AudioLowerVolume", musicwidget:command_volume_down() },
+                                 { "", "XF86AudioRaiseVolume", musicwidget:command_volume_up() },
+                                 { "", "XF86AudioPlay", musicwidget:command_playpause() } })
   musicwidget:run() -- After all configuration is done, run the widget
   
   musicwidget:append_global_keys()
@@ -694,6 +694,9 @@ end
 --------------------------------------------------------------
 
 -- Widgets aligned to the left
+ local bottom_left_layout = wibox.layout.fixed.horizontal()
+ local bottom_right_layout = wibox.layout.fixed.horizontal()
+
  local left_layout = wibox.layout.fixed.horizontal()
    left_layout:add(mylauncher)
    left_layout:add(mytaglist[s])
@@ -728,33 +731,33 @@ end
        right_layout:add(baticon) 
    end
    if diskhomebar_enable then 
-       right_layout:add(separator)
-       right_layout:add(fs.h)
-       right_layout:add(spacer)
-       right_layout:add(fs.r) 
-       right_layout:add(separator)
+       bottom_right_layout:add(separator)
+       bottom_right_layout:add(fs.h)
+       bottom_right_layout:add(spacer)
+       bottom_right_layout:add(fs.r) 
+       bottom_right_layout:add(separator)
    end
    if mem_enable then 
-       right_layout:add(separatorl)
-       right_layout:add(memicon) 
-       right_layout:add(memtext)
-       right_layout:add(spacer) 
-       right_layout:add(memwidget)
-       right_layout:add(separatorr)
+       bottom_right_layout:add(separatorl)
+       bottom_right_layout:add(memicon) 
+       bottom_right_layout:add(memtext)
+       bottom_right_layout:add(spacer) 
+       bottom_right_layout:add(memwidget)
+       bottom_right_layout:add(separatorr)
    end
    if cputemp_enable then 
-       right_layout:add(separatorl)
-       right_layout:add(cpuicon) 
-       right_layout:add(spacer)
-       right_layout:add(tzswidget)
-       right_layout:add(spacer)
-       right_layout:add(cpuwidget)
-       right_layout:add(separatorr)
+       bottom_right_layout:add(separatorl)
+       bottom_right_layout:add(cpuicon) 
+       bottom_right_layout:add(spacer)
+       bottom_right_layout:add(tzswidget)
+       bottom_right_layout:add(spacer)
+       bottom_right_layout:add(cpuwidget)
+       bottom_right_layout:add(separatorr)
    end
    if apt_enable then 
-       right_layout:add(separatorl)
-       right_layout:add(aptwidget) 
-       right_layout:add(separatorr)
+       bottom_right_layout:add(separatorl)
+       bottom_right_layout:add(aptwidget) 
+       bottom_right_layout:add(separatorr)
    end
    if weather_enable then 
        right_layout:add(separatorl)
@@ -762,14 +765,14 @@ end
        right_layout:add(separatorr)
    end
    if mpd_enable then 
-       right_layout:add(musicicon) 
-       right_layout:add(musicwidget.widget) 
-       right_layout:add(separator)
+       bottom_left_layout:add(musicicon) 
+       bottom_left_layout:add(musicwidget.widget) 
+       bottom_left_layout:add(separator)
    end
    if moc_enable then 
-       right_layout:add(musicicon) 
-       right_layout:add(tb_moc) 
-       right_layout:add(separator)
+       bottom_left_layout:add(musicicon) 
+       bottom_left_layout:add(tb_moc) 
+       bottom_left_layout:add(separator)
    end
    right_layout:add(separatorl)
    right_layout:add(calicon)
@@ -777,9 +780,9 @@ end
    right_layout:add(datewidget)
    right_layout:add(separatorr)
    if uptime_enable then 
-       right_layout:add(separatorl)
-       right_layout:add(uptime) 
-       right_layout:add(separatorr)
+       bottom_right_layout:add(separatorl)
+       bottom_right_layout:add(uptime) 
+       bottom_right_layout:add(separatorr)
    end
    right_layout:add(mylayoutbox[s])
    right_layout:add(spacer)
@@ -834,6 +837,14 @@ layout:set_middle(mytasklist[s])
 layout:set_right(right_layout)
 
 mywibox[s]:set_widget(layout)
+
+
+local bottom_layout = wibox.layout.align.horizontal()
+bottom_layout:set_left(bottom_left_layout)
+--bottom_layout:set_middle()
+bottom_layout:set_right(bottom_right_layout)
+
+my_bottom_wibox[s]:set_widget(bottom_layout)
 
 end
 

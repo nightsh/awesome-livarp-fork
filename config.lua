@@ -23,7 +23,7 @@ tasklist_icon_enable = true --enable client tasklist icons
 widget_mode = "graph" --support text/graph
 show_icons = true --support true or false -- if icons not in theme, default icons set will be used
 top_bar_visible = true -- support true/false -- toggle with ctrl+alt+t -- only work on primary screen
-bottom_bar_visible = false --support true/false -- toggle with ctrl+alt+b -- only work on primary screen
+bottom_bar_visible = true --support true/false -- toggle with ctrl+alt+b -- only work on primary screen
 invert_bar = false --invert widgets bar (top is bottom and bottom is top)
 wibox_opacity = 1 --wibox bar opacity (transparency between 0 and 1)
 
@@ -38,7 +38,7 @@ cputemp_enable = true --Show CPU temp
 --mem widget
 mem_enable = true -- Show memory bar
 memtext_enable = true -- Show memtext --need mem to be enable too (don't change anything in widget mode 'text')
-memtext_format = " $2" -- %1 percentage, %2 used %3 total %4 free
+memtext_format = "Used: $2 MiB" -- %1 percentage, %2 used %3 total %4 free
 
 --disk widget
 diskbootbar_enable = false --show boot partition bar
@@ -59,7 +59,7 @@ weather_code = "LRBS" --if show weather is enable use this code
 vol_enable = true --enable volume widget
 
 -- music widget
-mpd_enable = false --show mpd widget (need mpd and mpc to be installed)
+mpd_enable = true --show mpd widget (need mpd and mpc to be installed)
 moc_enable = false --show moc widget
 
 --bat widget
