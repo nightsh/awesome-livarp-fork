@@ -647,7 +647,7 @@ if weather_enable then
 					--'1800': check every 30 minutes.
 					--'LFMK': the Carcassonne ICAO code.
 
-	weatherwidget:buttons(awful.util.table.join(awful.button({}, 1, function () awful.util.spawn ( webcli .. " http://www.meteociel.fr/") end ) ) )                
+	weatherwidget:buttons(awful.util.table.join(awful.button({}, 1, function () awful.util.spawn ( webgui .. " http://www.google.com/search?q=weather+" .. weather_code) end ) ) )
 end
 --}}}
 --==============================================================--

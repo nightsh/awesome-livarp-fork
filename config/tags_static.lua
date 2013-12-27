@@ -63,15 +63,15 @@ for s = 1, screen.count() do
 		}
 	else
 		shifty.config.tags = {
-			["1"]   = { position = 1,  init = true, layout = layouts[2]},
-			["2"]   = { position = 2,  init = true, layout = layouts[2]},
-			["3"]   = { position = 3,  init = true, layout = layouts[2]},
-			["4"]   = { position = 4,  init = true, layout = layouts[2]},
-			["5"]   = { position = 5,  init = true, layout = layouts[2]},
-			["6"]   = { position = 6,  init = true, layout = layouts[2]},
-			["7"]   = { position = 7,  init = true, layout = layouts[2]},
-			["8"]   = { position = 8,  init = true, layout = layouts[2]},
-			["9"]   = { position = 9,  init = true, layout = layouts[2]},
+			["#1"]   = { position = 1,  init = true, layout = layouts[2]},
+			["#2"]   = { position = 2,  init = true, layout = layouts[2]},
+			["#3"]   = { position = 3,  init = true, layout = layouts[2]},
+			["#4"]   = { position = 4,  init = true, layout = layouts[2]},
+			["#5"]   = { position = 5,  init = true, layout = layouts[2]},
+			["#6"]   = { position = 6,  init = true, layout = layouts[2]},
+			["#7"]   = { position = 7,  init = true, layout = layouts[2]},
+			["#8"]   = { position = 8,  init = true, layout = layouts[2]},
+			["#9"]   = { position = 9,  init = true, layout = layouts[2]},
 		}
 	end
 end
