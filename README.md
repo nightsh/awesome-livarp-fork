@@ -25,7 +25,6 @@ though it's heavily based on it.
 ### Screenshots
 
 ![Screenshot 1](https://github.com/nighthsh/awesome-livarp-fork/raw/master/screens/1.png "Screenshot 1")
-![Screenshot 2](https://github.com/nighthsh/awesome-livarp-fork/raw/master/screens/2.png "Screenshot 2")
 ![Screenshot 3](https://github.com/nighthsh/awesome-livarp-fork/raw/master/screens/3.png "Screenshot 3")
 
 ### What works?
